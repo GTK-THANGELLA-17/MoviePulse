@@ -13,7 +13,6 @@ To start using Movie Pulse:
 
 ## Technologies Used
 - **Frontend**: HTML, CSS, JavaScript, Bootstrap
-- **Backend**: Firebase (for data storage and authentication)
 - **Charting Library**: Chart.js for graphical data representation
 
 
