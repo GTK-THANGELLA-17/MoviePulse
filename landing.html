@@ -1,116 +1,274 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MoviePulse Poll - Stats- Welcome</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f8f9fa;
-        }
-        .loading {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-        }
-        .loading h1 {
-            font-size: 3rem;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0% { opacity: 0.2; }
-            50% { opacity: 1; }
-            100% { opacity: 0.2; }
-        }
-        .info-section {
-            padding: 2rem;
-            background: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            margin: 2rem 0;
-        }
-        .info-section h2 {
-            margin-bottom: 1.5rem;
-        }
-        .info-section p {
-            margin-bottom: 1rem;
-        }
-        .info-section .btn-poll {
-            margin-top: 1rem;
-        }
-
-/* For mobile phones */
-@media only screen and (max-width: 600px) {
-  /* CSS styles */
-}
-
-/* For tablets and iPads */
-@media only screen and (min-width: 601px) and (max-width: 1024px) {
-  /* CSS styles */
-}
-
-/* For laptops and desktops */
-@media only screen and (min-width: 1025px) {
-  /* CSS styles */
-}
-
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MoviePulse | Welcome</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+  <!-- Animate.css -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f8ff;
+      transition: background 0.3s ease;
+      margin-top: 70px;
+    }
+    /* Navbar */
+    .navbar { background: #457b9d; }
+    .navbar-brand, .nav-link { color: #fff !important; }
+    .nav-link:hover { color: #f1faee !important; }
+    /* Hero Section */
+    .hero {
+      background: url('https://source.unsplash.com/1600x600/?movie,cinema') center/cover no-repeat fixed;
+      min-height: 60vh;
+      position: relative;
+      color: #fff;
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      top:0; left:0; width:100%; height:100%;
+      background: rgba(0,0,0,0.5);
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      padding: 2rem;
+      text-align: center;
+    }
+    .hero-content h1 { font-size: 3.5rem; }
+    .hero-content p { font-size: 1.25rem; }
+    /* Info Sections */
+    .info-section {
+      background: #fff;
+      border-radius: 10px;
+      padding: 2rem;
+      margin-top: -50px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+    .info-section h2, .info-section h3 { margin-bottom: 1rem; }
+    .info-section ul { list-style: none; padding-left: 0; }
+    .info-section ul li::before {
+      content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #1d3557; margin-right: 10px;
+    }
+    /* Testimonials */
+    .testimonial {
+      background: #f8f9fa;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin: 1rem;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    /* Team Section */
+    .team-member {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .team-member img {
+      border-radius: 50%;
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+    /* FAQ */
+    .faq-section .accordion-button { background: #e9ecef; }
+    /* Contact Form */
+    .contact-section { background: #fff; border-radius: 10px; padding: 2rem; box-shadow: 0 0 25px rgba(0,0,0,0.1); }
+    .btn-poll { transition: transform 0.3s ease; }
+    .btn-poll:hover { transform: scale(1.05); }
+    /* Footer */
+    footer { background: #457b9d; color: #fff; padding: 1rem 0; }
+    footer a { color: #f1faee; margin: 0 0.5rem; }
+    /* Dark Mode */
+    body.dark-mode {
+      background: #222;
+      color: #ccc;
+    }
+    body.dark-mode .navbar,
+    body.dark-mode footer { background: #000; }
+  </style>
 </head>
 <body>
-    <!-- Loading Page -->
-    <div class="loading" id="loading">
-        <h1>Loading...</h1>
-    </div>
-
-    <!-- Header -->
-    <header class="bg-dark text-white text-center py-3">
-        <h1 class="animated-title">MoviePulse Poll - Stats</h1>
-    </header>
-
-    <!-- Main Content -->
+  <!-- Navbar -->
+  <nav class="navbar fixed-top navbar-expand-lg">
     <div class="container">
-        <div class="info-section">
-            <h2>Welcome to Opinion and Interest Poll</h2>
-            <p>Our platform aims to gather and analyze movie genre preferences from audiences around the world. This information helps filmmakers and directors understand what types of movies are popular in different regions and industries.</p>
-            <h3>Why Participate?</h3>
-            <p>Your opinion matters! By participating in this poll, you contribute valuable insights into the movie industry, helping creators tailor their films to better match audience preferences.</p>
-            <h3>What is this Poll About?</h3>
-            <p>Every six months, we collect data on genre preferences in various film industries, including Tollywood, Bollywood, and Hollywood. This data is then presented in a comprehensive manner, showing trends and patterns that can influence future film projects.</p>
-            <h3>How Does it Work?</h3>
-            <ul>
-                <li>Select your country.</li>
-                <li>Based on your country, choose the relevant film industry.</li>
-                <li>Vote for your favorite genres.</li>
-                <li>See the aggregated results and trends.</li>
-            </ul>
-            <div class="text-center">
-                <a href="index.html" class="btn btn-primary btn-poll"><i class="fas fa-poll"></i> Start Poll</a>
-            </div>
-        </div>
+      <a class="navbar-brand" href="landing.html"><i class="fa-solid fa-clapperboard"></i> MoviePulse</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"><i class="fa-solid fa-bars" style="color:#fff;"></i></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="landing.html"><i class="fa-solid fa-house"></i> Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="stats.html"><i class="fa-solid fa-chart-bar"></i> Statistics</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html"><i class="fa-solid fa-pen-to-square"></i> Poll</a></li>
+          <li class="nav-item">
+            <button id="modeToggle" class="btn btn-sm btn-light ms-3"><i class="fa-solid fa-moon"></i></button>
+          </li>
+        </ul>
+      </div>
     </div>
+  </nav>
 
-    <!-- Footer -->
-    <footer class="bg-dark text-white text-center py-3">
-        <p>Designed and built by G. Thangella</p>
-    </footer>
+  <!-- Hero Section -->
+  <header class="hero d-flex align-items-center justify-content-center">
+    <div class="hero-content animate__animated animate__fadeInDown">
+      <h1><i class="fa-solid fa-film"></i> MoviePulse</h1>
+      <p>Your gateway to understanding global movie trends.</p>
+      <a href="index.html" class="btn btn-primary btn-poll mt-3"><i class="fa-solid fa-pen-to-square"></i> Cast Your Vote</a>
+    </div>
+  </header>
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            setTimeout(() => {
-                document.getElementById('loading').style.display = 'none';
-            }, 2000);
-        });
-    </script>
+  <!-- About / How It Works Section -->
+  <section class="container my-5">
+    <div class="info-section animate__animated animate__fadeInUp">
+      <h2>About MoviePulse</h2>
+      <p class="fs-5">MoviePulse is a platform designed to collect and analyze movie genre preferences from audiences worldwide. Your opinion not only helps filmmakers make informed decisions but also shapes the future of global cinema.</p>
+      <h3>How It Works</h3>
+      <ul>
+        <li>Select your country and the corresponding film industry.</li>
+        <li>Vote for your favorite movie genre.</li>
+        <li>View real-time statistics and trends.</li>
+      </ul>
+    </div>
+  </section>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Testimonials Section -->
+  <section class="container my-5">
+    <div class="text-center mb-4">
+      <h2>What People Say</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="testimonial animate__animated animate__fadeInUp">
+          <p>"MoviePulse gives a clear picture of what audiences love. It’s a game-changer for filmmakers!"</p>
+          <h6>- Alex D.</h6>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+          <p>"A brilliant platform that bridges the gap between audience preferences and film production."</p>
+          <h6>- Priya S.</h6>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+          <p>"User-friendly and insightful – MoviePulse is my go-to for movie trends."</p>
+          <h6>- Michael B.</h6>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="container my-5">
+    <div class="text-center mb-4">
+      <h2>Meet Our Team</h2>
+    </div>
+    <div class="row">
+      <div class="col-md-3 team-member animate__animated animate__fadeInUp">
+        <img src="https://via.placeholder.com/150" alt="Team Member">
+        <h6>G. Thangella</h6>
+        <p>Founder & CEO</p>
+      </div>
+      <div class="col-md-3 team-member animate__animated animate__fadeInUp" style="animation-delay: 0.2s;">
+        <img src="https://via.placeholder.com/150" alt="Team Member">
+        <h6>Jane Doe</h6>
+        <p>CTO</p>
+      </div>
+      <div class="col-md-3 team-member animate__animated animate__fadeInUp" style="animation-delay: 0.4s;">
+        <img src="https://via.placeholder.com/150" alt="Team Member">
+        <h6>John Smith</h6>
+        <p>Lead Designer</p>
+      </div>
+      <div class="col-md-3 team-member animate__animated animate__fadeInUp" style="animation-delay: 0.6s;">
+        <img src="https://via.placeholder.com/150" alt="Team Member">
+        <h6>Maria Garcia</h6>
+        <p>Marketing Head</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="container my-5 faq-section">
+    <div class="info-section animate__animated animate__fadeInUp">
+      <h2>Frequently Asked Questions</h2>
+      <div class="accordion" id="faqAccordion">
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHeadingOne">
+            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseOne">
+              What is MoviePulse?
+            </button>
+          </h2>
+          <div id="faqCollapseOne" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">MoviePulse is a platform that gathers movie genre preferences from audiences worldwide to help filmmakers create content that resonates with viewers.</div>
+          </div>
+        </div>
+        <div class="accordion-item">
+          <h2 class="accordion-header" id="faqHeadingTwo">
+            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo">
+              How is my data used?
+            </button>
+          </h2>
+          <div id="faqCollapseTwo" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
+            <div class="accordion-body">All data is stored locally and used only for aggregating poll statistics to inform filmmakers and directors about audience trends.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="container my-5">
+    <div class="contact-section animate__animated animate__fadeInUp">
+      <h2>Contact Us</h2>
+      <p class="fs-5">Have questions or suggestions? Reach out to us!</p>
+      <form>
+        <div class="mb-3">
+          <label for="contactName" class="form-label">Name</label>
+          <input type="text" id="contactName" class="form-control" placeholder="Your Name" required>
+        </div>
+        <div class="mb-3">
+          <label for="contactEmail" class="form-label">Email</label>
+          <input type="email" id="contactEmail" class="form-control" placeholder="Your Email" required>
+        </div>
+        <div class="mb-3">
+          <label for="contactMessage" class="form-label">Message</label>
+          <textarea id="contactMessage" class="form-control" rows="4" placeholder="Your Message" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="text-center">
+    <div class="container">
+      <p>Designed and built by G. Thangella © <span id="year"></span></p>
+      <p>
+        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+      </p>
+    </div>
+  </footer>
+
+  <!-- JavaScript Libraries -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Dark Mode Toggle
+    const modeToggle = document.getElementById('modeToggle');
+    modeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark-mode');
+      modeToggle.innerHTML = document.body.classList.contains('dark-mode') ? '<i class="fa-solid fa-sun"></i>' : '<i class="fa-solid fa-moon"></i>';
+    });
+  </script>
 </body>
 </html>
